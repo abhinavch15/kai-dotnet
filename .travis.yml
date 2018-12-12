@@ -1,0 +1,4 @@
+language: csharp
+solution: Kai.Net.sln
+install:
+  - nuget restore Kai.Net.sln
