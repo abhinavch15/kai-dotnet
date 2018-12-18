@@ -1,4 +1,9 @@
 language: csharp
 solution: Kai.Net.sln
 install:
-  - nuget restore Kai.Net.sln
+  - curl -L -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+  - nuget.exe restore Kai.Net.sln
+script:
+  - xbuild /p:Configuration=Release Kai.Net.sln
+  - nuget.exe setApiKey $NUGET_API_KEY -Source https://www.nuget.org -Verbosity quiet
+  - nuget.exe push <Project Name>.1.2.3.nupkg -Source https://www.nuget.org/api/v2/package  
